@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using POSDesktopUI.Library.Api;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,10 +11,11 @@ namespace LMSDesktopUI.ViewModels
     {
         private string _userName = "mambalde@naver.com";
         private string _password = "Sonfonia2@";
-        //private IAPIHelper _apiHelper;
+        private IAPIHelper _apiHelper;
         private IEventAggregator _events;
-        public LoginViewModel(IEventAggregator events)
+        public LoginViewModel(IEventAggregator events, IAPIHelper apiHelper)
         {
+            _apiHelper = apiHelper;
             _events = events;
         }
 
@@ -88,12 +90,12 @@ namespace LMSDesktopUI.ViewModels
             try
             {
                 ErrorMessage = "";
-                //var result = await _apiHelper.Authenticate(UserName, Password);
+                var result = await _apiHelper.Authenticate(UserName, Password);
 
-                // capture more info about the user
+               // capture more info about the user
 
-               // await _apiHelper.GetLoggedInUserInfo(result.Access_Token);
-                //await _events.PublishOnUIThreadAsync(new LogOnEvent());
+                await _apiHelper.GetLoggedInUserInfo(result.Access_Token);
+              //  await _events.PublishOnUIThreadAsync(new LogOnEvent());
 
             }
             catch (Exception ex)

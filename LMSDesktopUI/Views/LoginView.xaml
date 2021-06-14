@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:LMSDesktopUI.Views"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             Background="#23243B"
+             Background="#545C7E"
              Height="350" 
              Width="450"
              >

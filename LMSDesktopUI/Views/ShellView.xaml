@@ -10,7 +10,7 @@
         WindowState="Maximized"
         Title="ShellView" Height="1080" Width="1920">
 
-    <materialDesign:Card  Background="#C4CCE3">
+    <materialDesign:Card  Background="#292B43">
         <ContentControl x:Name="ActiveItem" Margin="3"/>
     </materialDesign:Card>
 </Window>

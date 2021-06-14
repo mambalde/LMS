@@ -1,9 +1,13 @@
 ﻿using Caliburn.Micro;
 using LMSDesktopUI.ViewModels;
+using Microsoft.Extensions.Configuration;
 using POSDesktopUI.Helpers;
 using POSDesktopUI.Input;
+using POSDesktopUI.Library.Api;
+using POSDesktopUI.Library.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -24,13 +28,28 @@ namespace LMSDesktopUI
            "PasswordChanged");
         }
 
+        private IConfiguration Addconfiguration()
+        {
+            IConfigurationBuilder builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
+#if DEBUG
+            builder.AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true);
+#else
+                    builder.AddJsonFile("appsettings.Production.json", optional: true, reloadOnChange: true);
+#endif
+            return builder.Build();
+        }
         protected override void Configure()
         {
 
 
             _container
                 .Singleton<IWindowManager, WindowManager>()
-                .Singleton<IEventAggregator, EventAggregator>();
+                .Singleton<IEventAggregator, EventAggregator>()
+                .Singleton<ILoggedInUserModel, LoggedInUserModel>()
+                .Singleton<IAPIHelper, APIHelper>();
+            _container.RegisterInstance(typeof(IConfiguration), "Iconfiguration", Addconfiguration());
 
             GetType().Assembly.GetTypes()
                 .Where(type => type.IsClass)
