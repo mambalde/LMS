@@ -1,11 +1,13 @@
 ﻿using Caliburn.Micro;
 using LMSDesktopUI.ViewModels;
+using POSDesktopUI.Helpers;
 using POSDesktopUI.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace LMSDesktopUI
@@ -16,6 +18,10 @@ namespace LMSDesktopUI
         public Bootstrapper()
         {
             Initialize();
+            ConventionManager.AddElementConvention<PasswordBox>(
+            PasswordBoxHelper.BoundPasswordProperty,
+           "Password",
+           "PasswordChanged");
         }
 
         protected override void Configure()

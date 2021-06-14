@@ -8,5 +8,6 @@
     [PublisherId] INT NOT NULL, 
     [State] NVARCHAR(50) NOT NULL, 
     [Availabilty] BIT NOT NULL DEFAULT 1, 
+    [BookImage] IMAGE NULL, 
     CONSTRAINT [FK_Book_ToPublisher] FOREIGN KEY ([PublisherId]) REFERENCES [Publisher]([Id]) 
 )
