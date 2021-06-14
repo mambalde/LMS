@@ -65,4 +65,15 @@
   <ItemGroup>
     <None Include="PublishLocations\LMSData.publish.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Users.sql" />
+    <Build Include="dbo\Tables\Staff.sql" />
+    <Build Include="dbo\Tables\Report.sql" />
+    <Build Include="dbo\Tables\Books.sql" />
+    <Build Include="dbo\Tables\Publisher.sql" />
+    <Build Include="dbo\Tables\Bookings.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="LMSData.refactorlog" />
+  </ItemGroup>
 </Project>
