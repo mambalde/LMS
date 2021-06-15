@@ -10,5 +10,6 @@ namespace POSDesktopUI.Library.Models
     {
         public string Access_Token { get; set; }
         public string userName { get; set; }
+        public string UserRole{ get; set; }
     }
 }

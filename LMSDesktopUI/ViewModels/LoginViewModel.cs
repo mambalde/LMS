@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using LMSDesktopUI.EventModels;
 using POSDesktopUI.Library.Api;
 using System;
 using System.Collections.Generic;
@@ -95,7 +96,7 @@ namespace LMSDesktopUI.ViewModels
                // capture more info about the user
 
                 await _apiHelper.GetLoggedInUserInfo(result.Access_Token);
-              //  await _events.PublishOnUIThreadAsync(new LogOnEvent());
+                await _events.PublishOnUIThreadAsync(new LogOnEvent());
 
             }
             catch (Exception ex)

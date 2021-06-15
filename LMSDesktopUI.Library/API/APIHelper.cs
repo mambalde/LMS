@@ -55,6 +55,7 @@ namespace POSDesktopUI.Library.Api
                 if (response.IsSuccessStatusCode)
                 {
                     var result = await response.Content.ReadAsAsync<AuthenticatedUser>();
+                    _loggedInUser.UserRole = result.UserRole;
                     return result;
                 }
                 else
@@ -81,10 +82,9 @@ namespace POSDesktopUI.Library.Api
                 if (response.IsSuccessStatusCode)
                 {
                     var result = await response.Content.ReadAsAsync<LoggedInUserModel>();
-                    _loggedInUser.CreatedDate = result.CreatedDate;
-                    _loggedInUser.EmailAddress = result.EmailAddress;
-                    _loggedInUser.FirstName = result.FirstName;
-                    _loggedInUser.LastName = result.LastName;
+                    
+                    _loggedInUser.Email = result.Email;
+                    _loggedInUser.UserName = result.UserName;
                     _loggedInUser.Id = result.Id;
                     _loggedInUser.Token = token;
                 }

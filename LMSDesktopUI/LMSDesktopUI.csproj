@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="EventModels\" />
     <Folder Include="Validators\" />
   </ItemGroup>
 

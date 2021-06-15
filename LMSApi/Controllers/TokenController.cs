@@ -18,7 +18,7 @@ namespace LMSApi.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IConfiguration _config;
-
+        private string UserRoleName = "";
         public TokenController(ApplicationDbContext context, UserManager<IdentityUser> userManager, IConfiguration config)
         {
             _context = context;
@@ -64,6 +64,7 @@ namespace LMSApi.Controllers
             foreach (var role in roles)
             {
                 claims.Add(new Claim(ClaimTypes.Role, role.Name));
+                UserRoleName = role.Name;
             }
 
             string key = _config.GetValue<string>("Secrets:SecurityKey");
@@ -74,10 +75,13 @@ namespace LMSApi.Controllers
                     SecurityAlgorithms.HmacSha256)),
                 new JwtPayload(claims));
 
+           
             var output = new
             {
                 Access_Token = new JwtSecurityTokenHandler().WriteToken(token),
-                UserName = userName
+                UserName = userName,
+                UserRole = UserRoleName
+
             };
 
             return output;
