@@ -73,6 +73,7 @@
     <Build Include="dbo\Tables\Publisher.sql" />
     <Build Include="dbo\Tables\Bookings.sql" />
     <Build Include="dbo\Stored Procedures\spUser_Lookup.sql" />
+    <Build Include="dbo\Stored Procedures\spBooks_GetAll.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="LMSData.refactorlog" />

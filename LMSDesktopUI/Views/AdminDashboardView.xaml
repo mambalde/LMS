@@ -35,11 +35,11 @@
                         Margin="0 30 0 0" Background="Transparent">
                         <materialDesign:PackIcon Kind="Home"/>
                     </Button>
-                    <Button x:Name="Users"
+                    <Button x:Name="User"
                         BorderThickness="0"
                          Opacity="0.5"
                         Margin="0 30 0 0" Background="Transparent">
-                        <materialDesign:PackIcon Kind="Users"/>
+                        <materialDesign:PackIcon Kind="UsersAdd"/>
                     </Button>
                     <Button x:Name="Settings"
                         BorderThickness="0"
@@ -123,9 +123,35 @@
                             </Button>
                         </materialDesign:Card>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                       
-                    </StackPanel>
+                    <ListView x:Name="Books" 
+                              Margin="0 30 0 0" Width="1176"
+                              HorizontalAlignment="Center"
+                              ItemsSource="{Binding Books}" Height="168">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Width="{Binding (FrameworkElement.ActualWidth), 
+                                      RelativeSource={RelativeSource AncestorType=ScrollContentPresenter}}"
+                                      ItemWidth="{Binding (ListView.View).ItemWidth, 
+                                      RelativeSource={RelativeSource AncestorType=ListView}}"
+                                      MinWidth="{Binding ItemWidth, RelativeSource={RelativeSource Self}}"
+                                      ItemHeight="{Binding (ListView.View).ItemHeight, 
+                                      RelativeSource={RelativeSource AncestorType=ListView}}" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <materialDesign:Card 
+                                    Width="200"
+                                    HorizontalAlignment="Center" VerticalAlignment="Center" Height="100">
+                                    <StackPanel Orientation="Vertical">
+                                        <Image Source="{Binding BookImage}"/>
+                                        <TextBlock Text="{Binding Title}"/>
+                                        <TextBlock Text="{Binding Price}"/>
+                                    </StackPanel>
+                                </materialDesign:Card>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </StackPanel>
             </materialDesign:Card>
         </Grid>

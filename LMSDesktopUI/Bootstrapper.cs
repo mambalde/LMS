@@ -1,4 +1,8 @@
-﻿using Caliburn.Micro;
+﻿using AutoMapper;
+using Caliburn.Micro;
+using LMSDesktopUI.Library.API;
+using LMSDesktopUI.Library.Models;
+using LMSDesktopUI.Models;
 using LMSDesktopUI.ViewModels;
 using Microsoft.Extensions.Configuration;
 using POSDesktopUI.Helpers;
@@ -27,7 +31,16 @@ namespace LMSDesktopUI
            "Password",
            "PasswordChanged");
         }
+        private IMapper ConfigureAutoMapper()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<BookModel, BooksDisplayModel>();
+            });
 
+            var mapper = config.CreateMapper();
+            return mapper;
+        }
         private IConfiguration Addconfiguration()
         {
             IConfigurationBuilder builder = new ConfigurationBuilder()
@@ -43,7 +56,9 @@ namespace LMSDesktopUI
         protected override void Configure()
         {
 
-
+            _container.Instance(ConfigureAutoMapper());
+            _container.Instance(_container)
+               .PerRequest<IBookEndpoint, BookEndpoint>();
             _container
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<IEventAggregator, EventAggregator>()

@@ -1,21 +1,43 @@
-﻿using Caliburn.Micro;
+﻿using AutoMapper;
+using Caliburn.Micro;
+using LMSDesktopUI.Library.API;
+using LMSDesktopUI.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace LMSDesktopUI.ViewModels
 {
     public class AdminDashboardViewModel:Screen
     {
-        public AdminDashboardViewModel()
+        private readonly IBookEndpoint _bookEndpoint;
+        private readonly IMapper _mapper;
+        public AdminDashboardViewModel(IBookEndpoint bookEndpoint, IMapper mapper)
         {
-
+            _bookEndpoint = bookEndpoint;
+            _mapper = mapper;
         }
 
-        private BindingList<string> _books;
+        protected override async void OnViewLoaded(object view)
+        {
+            base.OnViewLoaded(view);
+            try
+            {
 
-        public BindingList<string> Books
+                await LoadProducts();
+            }
+            catch (Exception)
+            {
+                await TryCloseAsync();
+
+            }
+        }
+
+        private BindingList<BooksDisplayModel> _books = new BindingList<BooksDisplayModel>();
+
+        public BindingList<BooksDisplayModel> Books
         {
             get { return _books; }
             set
@@ -49,6 +71,13 @@ namespace LMSDesktopUI.ViewModels
         public void DisplayUsers()
         {
 
+        }
+
+        private async Task LoadProducts()
+        {
+            var books = await _bookEndpoint.GetAll();
+            var gottenBooks = _mapper.Map<List<BooksDisplayModel>>(books);
+            Books = new BindingList<BooksDisplayModel>(gottenBooks);
         }
     }
 }
