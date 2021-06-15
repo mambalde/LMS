@@ -19,5 +19,6 @@ namespace LMSDataManager.Library.DataAccess
             var output = _sql.LoadData<BookModel, dynamic>("dbo.spBooks_GetAll", new { }, "LMSData");
             return output;
         }
+
     }
 }

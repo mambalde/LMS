@@ -123,7 +123,7 @@
                         Margin="0 25 0 0"
                         FontSize="20"
                         Foreground="White" TextAlignment="Center"
-                        Text="Balde"/>
+                        Text="{Binding UserName}"/>
                 </StackPanel>
             </materialDesign:Card>
             <materialDesign:Card 
@@ -147,7 +147,7 @@
                             UniformCornerRadius="10"
                             Margin="815 5 0 0"
                             Height="30" Width="130">
-                            <Button x:Name="AddNewBook"
+                            <Button x:Name="ReturnBook"
                                 BorderThickness="0"
                                 Background="Transparent"
                                 >
@@ -164,7 +164,7 @@
                             UniformCornerRadius="10"
                             Margin="30 5 0 0"
                             Height="30" Width="130">
-                            <Button x:Name="AddNeBook"
+                            <Button x:Name="BorrowBook"
                                 BorderThickness="0"
                                 Background="Transparent"
                                 >
@@ -259,7 +259,7 @@
                             SelectionMode="Single"
                             AlternatingRowBackground="#ECEFF1"
                             CanUserResizeColumns="False"
-                            ItemsSource="{Binding Path=MyBooks}"
+                            ItemsSource="{Binding Path=BookingReport}"
                             GridLinesVisibility="None"
                             BorderBrush="AntiqueWhite"
                             Width="500"
@@ -273,27 +273,18 @@
                                 Header="책 이름">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding UserName}"/>
+                                            <TextBlock Text="{Binding Title}"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
-                                <DataGridTemplateColumn 
-                                Width="*"
-                                HeaderStyle="{StaticResource ProductListHeader}"
-                                Header="사용자 이름">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Email}"/>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
+
                                 <DataGridTemplateColumn 
                                 Width="*"
                                 HeaderStyle="{StaticResource ProductListHeader}"
                                 Header="날짜">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Email}"/>
+                                            <TextBlock Text="{Binding BookedDate, StringFormat=yyyy-MM-dd}"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>

@@ -19,6 +19,7 @@ namespace LMSApi.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IConfiguration _config;
         private string UserRoleName = "";
+        private string LoggedInUserId = "";
         public TokenController(ApplicationDbContext context, UserManager<IdentityUser> userManager, IConfiguration config)
         {
             _context = context;
@@ -80,7 +81,8 @@ namespace LMSApi.Controllers
             {
                 Access_Token = new JwtSecurityTokenHandler().WriteToken(token),
                 UserName = userName,
-                UserRole = UserRoleName
+                UserRole = UserRoleName,
+                UserId = user.Id
 
             };
 

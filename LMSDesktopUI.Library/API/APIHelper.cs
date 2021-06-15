@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using LMSDesktopUI.Library.Models;
+using Microsoft.Extensions.Configuration;
 using POSDesktopUI.Library.Models;
 using System;
 using System.Collections.Generic;
@@ -70,6 +71,7 @@ namespace POSDesktopUI.Library.Api
         {
             _apiClient.DefaultRequestHeaders.Clear();
         }
+
         public async Task GetLoggedInUserInfo(string token)
         {
             _apiClient.DefaultRequestHeaders.Clear();
@@ -81,11 +83,11 @@ namespace POSDesktopUI.Library.Api
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    var result = await response.Content.ReadAsAsync<LoggedInUserModel>();
+                    var result = await response.Content.ReadAsAsync<UserModel>();
                     
                     _loggedInUser.Email = result.Email;
-                    _loggedInUser.UserName = result.UserName;
-                    _loggedInUser.Id = result.Id;
+                    _loggedInUser.UserName = result.StaffName;
+                    _loggedInUser.Id = result.StaffId;
                     _loggedInUser.Token = token;
                 }
                 else

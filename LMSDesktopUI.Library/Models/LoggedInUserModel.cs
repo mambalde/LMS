@@ -13,11 +13,14 @@ namespace POSDesktopUI.Library.Models
         public string UserName { get; set; }
         public string Email { get; set; }
         public string UserRole { get; set; }
+        public string UserId { get; set; }
+        
 
         public void LogOffUser()
         {
             Token = "";
             Id = "";
+            UserId = "";
             UserName = "";
             UserRole = "";
             Email = "";
