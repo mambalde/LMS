@@ -13,10 +13,12 @@ namespace LMSDesktopUI.ViewModels
     public class AdminDashboardViewModel:Screen
     {
         private readonly IBookEndpoint _bookEndpoint;
+        private readonly IUserEndpoint _userEndpoint;
         private readonly IMapper _mapper;
-        public AdminDashboardViewModel(IBookEndpoint bookEndpoint, IMapper mapper)
+        public AdminDashboardViewModel(IBookEndpoint bookEndpoint, IUserEndpoint userEndpoint, IMapper mapper)
         {
             _bookEndpoint = bookEndpoint;
+            _userEndpoint = userEndpoint;
             _mapper = mapper;
         }
 
@@ -47,14 +49,14 @@ namespace LMSDesktopUI.ViewModels
             }
         }
 
-        private BindingList<string> _users;
-        public BindingList<string> Users
+        private BindingList<UserDisplayModel> _users = new BindingList<UserDisplayModel>();
+        public BindingList<UserDisplayModel> Users
         {
             get { return _users; }
             set
             {
                 _users = value;
-                NotifyOfPropertyChange(() => Books);
+                NotifyOfPropertyChange(() => Users);
             }
         }
 
@@ -77,7 +79,12 @@ namespace LMSDesktopUI.ViewModels
         {
             var books = await _bookEndpoint.GetAll();
             var gottenBooks = _mapper.Map<List<BooksDisplayModel>>(books);
-            Books = new BindingList<BooksDisplayModel>(gottenBooks);
+            Books = new BindingList<BooksDisplayModel>(gottenBooks); 
+
+            var users = await _userEndpoint.GetAll();
+            var gottenUsers = _mapper.Map<List<UserDisplayModel>>(users);
+            Users = new BindingList<UserDisplayModel>(gottenUsers);
+
         }
     }
 }

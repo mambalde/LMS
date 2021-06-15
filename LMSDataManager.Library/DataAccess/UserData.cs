@@ -10,7 +10,7 @@ namespace LMSDataManager.Library.DataAccess
     public class UserData : IUserData
     {
         private readonly ISqlDataAccess _sql;
-
+        
         public UserData(ISqlDataAccess sql)
         {
             _sql = sql;
@@ -20,5 +20,6 @@ namespace LMSDataManager.Library.DataAccess
             var output = _sql.LoadData<UserModel, dynamic>("dbo.spUser_Lookup", new { Id }, "LMSData");
             return output;
         }
+
     }
 }
