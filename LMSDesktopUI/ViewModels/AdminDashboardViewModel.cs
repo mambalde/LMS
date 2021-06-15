@@ -28,7 +28,7 @@ namespace LMSDesktopUI.ViewModels
             try
             {
 
-                await LoadProducts();
+                await LoadBooks();
             }
             catch (Exception)
             {
@@ -75,7 +75,7 @@ namespace LMSDesktopUI.ViewModels
 
         }
 
-        private async Task LoadProducts()
+        private async Task LoadBooks()
         {
             var books = await _bookEndpoint.GetAll();
             var gottenBooks = _mapper.Map<List<BooksDisplayModel>>(books);
