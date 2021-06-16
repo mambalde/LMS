@@ -41,6 +41,7 @@ namespace LMSApi
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddTransient<IUserData, UserData>();
+            services.AddTransient<IPublisherData, PublisherData>();
             services.AddTransient<IBookingsData, BookingsData>();
             services.AddTransient<IBookData, BookData>();
             services.AddTransient<ISqlDataAccess, SqlDataAccess>();

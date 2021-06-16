@@ -36,6 +36,7 @@ namespace LMSDesktopUI
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<BookModel, BooksDisplayModel>();
+                cfg.CreateMap<PublisherModel, PublisherDisplayModel>();
                 cfg.CreateMap<BookingReportModel, BookingReportDisplayModel>();
                 cfg.CreateMap<UserModel, UserDisplayModel>();
             });
@@ -61,6 +62,7 @@ namespace LMSDesktopUI
             _container.Instance(ConfigureAutoMapper());
             _container.Instance(_container)
                .PerRequest<IUserEndpoint, UserEndpoint>()
+               .PerRequest<IPublisherEndpoint, PublisherEndpoint>()
                .PerRequest<IBookingsEndpoint, BookingsEndpoint>()
                .PerRequest<IBookEndpoint, BookEndpoint>();
             _container

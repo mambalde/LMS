@@ -32,5 +32,41 @@ namespace LMSDesktopUI.Library.API
                 }
             }
         }
+        public async Task PostBook(BookModel book)
+        {
+
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.PostAsJsonAsync("/api/Books", book))
+            {
+
+                if (response.IsSuccessStatusCode)
+                {
+                    //Do
+                }
+                else
+                {
+                    // impliment Logging here
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+
+        }
+        public async Task DeleteBook(BookModel book)
+        {
+
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.PostAsJsonAsync("/api/Books/DeleteBook", book))
+            {
+
+                if (response.IsSuccessStatusCode)
+                {
+                    //Do
+                }
+                else
+                {
+                    // impliment Logging here
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+
+        }
     }
 }

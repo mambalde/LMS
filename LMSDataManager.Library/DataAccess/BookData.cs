@@ -14,6 +14,18 @@ namespace LMSDataManager.Library.DataAccess
         {
             _sql = sql;
         }
+
+        public void SaveBookRecord(BookModel book)
+        {
+            _sql.SaveData("dbo.spBook_Insert", book, "LMSData");
+        }
+
+        public void DeleteRecord(int Id)
+        {
+            
+            _sql.DeleteData("dbo.spBook_Delete", new { Id }, "LMSData");
+        }
+
         public List<BookModel> GetBooks()
         {
             var output = _sql.LoadData<BookModel, dynamic>("dbo.spBooks_GetAll", new { }, "LMSData");

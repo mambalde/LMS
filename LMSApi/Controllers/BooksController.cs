@@ -19,6 +19,20 @@ namespace LMSApi.Controllers
             _bookData = bookData;
         }
 
+        [HttpPost]
+        public void Post(BookModel book)
+        {
+            _bookData.SaveBookRecord(book);
+        }
+
+        [Route("DeleteBook")]
+        [HttpPost]
+        public void DeleteBook(BookModel book)
+        {
+            _bookData.DeleteRecord(book.Id);
+        }
+
+
         [Route("GetBooks")]
         [HttpGet]
         public List<BookModel> Get()

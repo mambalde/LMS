@@ -6,11 +6,25 @@
         xmlns:local="clr-namespace:LMSDesktopUI.Views"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterOwner"
-        WindowState="Maximized"
-        Title="ShellView" Height="1080" Width="1920">
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Title="ShellView" Height="780" Width="1400">
 
-    <materialDesign:Card  Background="#5b4060">
-        <ContentControl x:Name="ActiveItem" Margin="3"/>
+    <materialDesign:Card 
+        BorderThickness="100"
+        UniformCornerRadius="50"
+        Background="#5b4060">
+        <StackPanel Orientation="Vertical">
+            <Button Cursor="Hand" x:Name="Close"
+                 Opacity="0.5"
+                 BorderThickness="0" Background="Transparent" Margin="1100 2 0 0" Width="64">
+                <materialDesign:PackIcon Kind="Close"/>
+            </Button>
+            <ContentControl x:Name="ActiveItem" Margin="3" Height="699"/>
+        </StackPanel>
+      
     </materialDesign:Card>
 </Window>

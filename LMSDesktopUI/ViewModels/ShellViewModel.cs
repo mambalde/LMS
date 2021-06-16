@@ -26,6 +26,10 @@ namespace LMSDesktopUI.ViewModels
             ActivateItemAsync(IoC.Get<LoginViewModel>());
         }
 
+        public void Close()
+        {
+            TryCloseAsync();
+        }
         public Task HandleAsync(LogOnEvent message, CancellationToken cancellationToken)
         {
             if (!string.IsNullOrEmpty(_user.UserRole )&& _user.UserRole.Equals("Admin"))

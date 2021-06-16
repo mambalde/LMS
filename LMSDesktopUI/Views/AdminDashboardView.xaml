@@ -9,8 +9,8 @@
              Height="751" Width="1350">
     <UserControl.Resources>
         <Style x:Key="ProductListHeader" TargetType="{x:Type DataGridColumnHeader}">
-            <Setter Property="Background" Value="#CBC9F1"/>
-            <Setter Property="Foreground" Value="#212121"/>
+            <Setter Property="Background" Value="#CBC9"/>
+            <Setter Property="Foreground" Value="White"/>
 
             <Setter Property="Height" Value="35"/>
             <Setter Property="IsHitTestVisible" Value="False"/>
@@ -48,7 +48,7 @@
     <materialDesign:Card 
         BorderThickness="100"
         UniformCornerRadius="30"
-        Background="#292B43">
+        Background="#292B43" Height="751" VerticalAlignment="Top">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>
@@ -123,7 +123,7 @@
                         Margin="0 25 0 0"
                         FontSize="20"
                         Foreground="White" TextAlignment="Center"
-                        Text="Balde"/>
+                        Text="{Binding UserName}"/>
                 </StackPanel>
             </materialDesign:Card>
             <materialDesign:Card 
@@ -160,9 +160,10 @@
                         </materialDesign:Card>
                     </StackPanel>
                     <ListView x:Name="Books" 
-                              Margin="0 30 0 0" Width="1176"
+                              Margin="0 0 0 0" Width="1176"
                               HorizontalAlignment="Center"
-                              ItemsSource="{Binding Books}" Height="168">
+                              SelectedItem="{Binding SelectedBook}"
+                              ItemsSource="{Binding FilteredBooks}" Height="225">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Width="{Binding (FrameworkElement.ActualWidth), 
@@ -177,12 +178,12 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <materialDesign:Card 
-                                    Width="200"
-                                    HorizontalAlignment="Center" VerticalAlignment="Center" Height="100">
-                                    <StackPanel Orientation="Vertical">
-                                        <Image Source="{Binding BookImage}"/>
-                                        <TextBlock Text="{Binding Title}"/>
-                                        <TextBlock Text="{Binding Price}"/>
+                                    Width="200" Background="#292B43"
+                                    HorizontalAlignment="Center" VerticalAlignment="Center" Height="200">
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+                                        <Image Height="150" Width="100" Source="{Binding BookImage}"/>
+                                        <TextBlock Foreground="White" Text="{Binding Title}"/>
+                                        <TextBlock Foreground="White" Text="{Binding Price}"/>
                                     </StackPanel>
                                 </materialDesign:Card>
                             </DataTemplate>
@@ -204,18 +205,18 @@
                                 Foreground="White" TextAlignment="Center"
                                 Text="Borrowed Books"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Margin="0 30 0 0" Orientation="Horizontal" Height="235">
                         <DataGrid ScrollViewer.HorizontalScrollBarVisibility="Auto"
                          ScrollViewer.VerticalScrollBarVisibility="Auto"
                          ScrollViewer.CanContentScroll="True"
                          CanUserAddRows="False"
-                         Background="#fff"
+                         Background="#292B43"
+                         Foreground="White"
                          Margin="40 10 0 0"
                          EnableRowVirtualization="True"
                         EnableColumnVirtualization="True"
                         AlternationCount="2"
                          SelectionMode="Single"
-                        AlternatingRowBackground="#ECEFF1"
                          CanUserResizeColumns="False"
                         ItemsSource="{Binding Path=Users}"
                         GridLinesVisibility="None"
@@ -223,7 +224,7 @@
                         Width="500"
                         x:Name="Users"
                         SelectedItem="{Binding SelectedUser}"
-                        AutoGenerateColumns="False" Height="256">
+                        AutoGenerateColumns="False" Height="215">
                             <DataGrid.Columns>
                                 <DataGridTemplateColumn 
                                 Width="*"
@@ -252,21 +253,21 @@
                             ScrollViewer.VerticalScrollBarVisibility="Auto"
                              ScrollViewer.CanContentScroll="True"
                             CanUserAddRows="False"
-                            Background="#fff"
+                             Foreground="White"
+                            Background="#292B43"
                             Margin="170 10 0 0"
                             EnableRowVirtualization="True"
                             EnableColumnVirtualization="True"
                             AlternationCount="2"
                             SelectionMode="Single"
-                            AlternatingRowBackground="#ECEFF1"
                             CanUserResizeColumns="False"
-                            ItemsSource="{Binding Path=Bookings}"
+                            ItemsSource="{Binding Path=BookingReport}"
                             GridLinesVisibility="None"
                             BorderBrush="AntiqueWhite"
                             Width="500"
                             x:Name="Bookings"
                             SelectedItem="{Binding SelectedBooking}"
-                            AutoGenerateColumns="False" Height="260">
+                            AutoGenerateColumns="False" Height="216">
                             <DataGrid.Columns>
                                 <DataGridTemplateColumn 
                                 Width="*"
@@ -274,7 +275,7 @@
                                 Header="책 이름">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding BookName}"/>
+                                            <TextBlock Text="{Binding Title}"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -294,7 +295,7 @@
                                 Header="날짜">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding BorrowedDate}"/>
+                                            <TextBlock Text="{Binding BookedDate}"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -344,7 +345,7 @@
                             BorderThickness="100"
                             UniformCornerRadius="10"
                             Height="30" Width="130">
-                            <Button x:Name="AN"
+                            <Button x:Name="DeleteBook"
                                 BorderThickness="0"
                                 Background="Transparent"
                                 >

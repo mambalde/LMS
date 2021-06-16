@@ -19,6 +19,8 @@ namespace LMSDataManager.Library.DataAccess
         {
             _sql.SaveData("dbo.spBooking_Insert", book, "LMSData");
         }
+
+
         public List<BookingReportModel> GetBookings()
         {
             var output = _sql.LoadData<BookingReportModel, dynamic>("dbo.spBookings_GetAll", new { }, "LMSData");

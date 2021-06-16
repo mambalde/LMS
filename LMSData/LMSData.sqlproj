@@ -76,6 +76,9 @@
     <Build Include="dbo\Stored Procedures\spBooks_GetAll.sql" />
     <Build Include="dbo\Stored Procedures\spBooking_Insert.sql" />
     <Build Include="dbo\Stored Procedures\spBookings_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\spBook_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\spPublisher_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\spBook_Delete.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="LMSData.refactorlog" />
